@@ -1,5 +1,7 @@
 # hetzner-ark-server
-This repo provides the possibility to provison a HCloud Server which includes your SSH Key and has a public IPv4 attached. [Arkmanager](https://github.com/arkmanager/ark-server-tools) will be installed as well via userdata
+This repo provides the possibility to provison a HCloud Server which includes your SSH Key and has a public IPv4 attached. [Arkmanager](https://github.com/arkmanager/ark-server-tools) will be installed as well via userdata.
+
+Configuration of the Ark Survival Evolved Server needs to be done manually on the machine
 
 ## Prerequisites
 
