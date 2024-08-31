@@ -1,0 +1,31 @@
+#cloud-config
+users:
+  - name: steam
+    groups: users, admin
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+package_update: true
+package_upgrade: true
+packages:
+  - perl-modules
+  - curl
+  - lsof
+  - libc6-i386
+  - lib32gcc-s1
+  - bzip2
+runcmd:
+  - sudo -u steam -s
+  - cd /home/steam
+  - iptables -I INPUT -p udp --dport 27016 -j ACCEPT
+  - iptables -I INPUT -p tcp --dport 27016 -j ACCEPT
+  - iptables -I INPUT -p udp --dport 7777 -j ACCEPT
+  - iptables -I INPUT -p tcp --dport 7777 -j ACCEPT
+  - iptables -I INPUT -p udp --dport 7778 -j ACCEPT
+  - iptables -I INPUT -p tcp --dport 7778 -j ACCEPT
+  - iptables -I INPUT -p tcp --dport 32330 -j ACCEPT
+  - sudo add-apt-repository multiverse -y
+  - sudo dpkg --add-architecture i386
+  - sudo apt update
+  - sudo apt install steamcmd -y
+  - curl -sL https://raw.githubusercontent.com/arkmanager/ark-server-tools/master/netinstall.sh | sudo bash -s steam
+  - arkmanager install
